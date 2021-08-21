@@ -16,7 +16,7 @@ export async function getStaticProps() {
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(products);
+  // console.log(products);
 
   return <div>{JSON.stringify(products)}</div>;
 }
