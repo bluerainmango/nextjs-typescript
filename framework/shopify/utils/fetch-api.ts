@@ -1,17 +1,12 @@
 // import axios from "axios";
+import { ApiFetcherOptions, ApiFetcherResults } from "@common/types/api";
 
-type FetcherParams = {
-  query: string;
-};
-
-type FetcherResult<T> = { data: T };
-
-// <T> : return any generic types
 // Promise<FetcherResult<T>>: return promise type
 const fetchApi = async <T>({
+  url,
   query,
-}: FetcherParams): Promise<FetcherResult<T>> => {
-  const url = "http://localhost:4000/graphql";
+}: ApiFetcherOptions): Promise<ApiFetcherResults<T>> => {
+  // const url = "http://localhost:4000/graphql";
 
   const res = await fetch(url, {
     method: "POST",

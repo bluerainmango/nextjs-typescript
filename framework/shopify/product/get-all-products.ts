@@ -1,17 +1,12 @@
-// Utils
-import { fetchApi, normalizeProduct, getAllProductsQuery } from "../utils";
+//* Utils > index.ts
+import { normalizeProduct, getAllProductsQuery } from "../utils";
 
-// import fetchApi from "../utils/fetch-api";
-// import { normalizeProduct } from "../utils/normalize";
-// import getAllProductsQuery from "../utils/queries/get-all-products";
-
-// GraphQL Query
-// Shopify Schema for type definition
+//* GraphQL Query. Shopify Schema for type definition
 import { ProductConnection } from "../schema";
 
-// Universal Types cross all platforms including Shopify
-// import { Product } from "../../common/types/product";
+//* Universal Types cross all platforms including Shopify
 import { Product } from "@common/types/product";
+import { ApiConfig } from "@common/types/api";
 
 // Import Shopify's product schema so that inside props can be chained and used in 'getAllProducts' func.
 type ReturnType = {
@@ -19,8 +14,11 @@ type ReturnType = {
 };
 
 // any type of array is returned as a result of promise
-const getAllProducts = async (): Promise<Product[]> => {
-  const { data } = await fetchApi<ReturnType>({ query: getAllProductsQuery });
+const getAllProducts = async (config: ApiConfig): Promise<Product[]> => {
+  const { data } = await config.fetch<ReturnType>({
+    url: config.apiUrl,
+    query: getAllProductsQuery,
+  });
 
   //* Normalize products: [{product1}, {product2}...]
   // Changing fetched data directory to utilize in our app
