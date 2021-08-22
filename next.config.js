@@ -3,7 +3,7 @@ const { withFrameworkConfig } = require("./framework/common/config");
 module.exports = withFrameworkConfig({
   reactStrictMode: true,
   framework: {
-    name: "shopify",
+    name: "shopify", // 여기서 framework를 결정해 주자.
   },
   i18n: {
     locales: ["en-US", "es"],

@@ -8,7 +8,7 @@ const ALLOWED_FW = ["shopify", "bigcommerce", "shopify_local"]; // shopify_local
 const FALLBACK_FW = "shopify";
 
 // Import the designated framework's config and merge with common config & set tsconfig.json
-function withFrameworkConfig(defaultConfig = {}) {
+exports.withFrameworkConfig = function (defaultConfig = {}) {
   let framework = defaultConfig?.framework?.name; // shopify, bigcommerce ... or undefined
 
   if (!framework) {
@@ -53,6 +53,6 @@ function withFrameworkConfig(defaultConfig = {}) {
 
   //! 2. next.config.js 설정하기 위한 new merged config 반환
   return newMergedNextConfig;
-}
+};
 
-module.exports = { withFrameworkConfig };
+// module.exports = {withFrameworkConfig};

@@ -2,6 +2,7 @@ import type { InferGetStaticPropsType } from "next";
 // import getAllProducts from "../framework/shopify/product/get-all-products"; // ts file can be imported without ext name
 import getAllProducts from "@framework/product/get-all-products"; // ts file can be imported without ext name
 import { getConfig } from "@framework/api/config";
+import { Layout } from "@components/common";
 
 export async function getStaticProps() {
   const config = getConfig();
@@ -22,3 +23,5 @@ export default function Home({
 
   return <div>{JSON.stringify(products)}</div>;
 }
+
+Home.Layout = Layout;
