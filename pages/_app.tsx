@@ -1,6 +1,8 @@
 import { AppProps } from "next/app";
 import { FC } from "react";
 
+import "@assets/main.css";
+
 const Noop: FC = ({ children }) => <>{children}</>;
 
 function MyApp({
