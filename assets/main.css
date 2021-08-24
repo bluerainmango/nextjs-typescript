@@ -1,3 +1,5 @@
+@import "./base.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,3 +7,7 @@
 /* .layout {
   background-color: red;
 } */
+
+.fit {
+  min-height: calc(100vh - 88px);
+}
