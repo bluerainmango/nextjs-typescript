@@ -35,7 +35,9 @@ exports.withFrameworkConfig = function (defaultConfig = {}) {
     "next.config.js"
   ));
 
+  // 가장 바깥 폴더의 next.config.js 내 해당 함수의 인자로 들어온 defaultConfig obj 내용과 shopify, bigcommer 등 폴더 내 next.config.js 파일을 deep merge
   const newMergedNextConfig = merge(defaultConfig, frameworkNextConfig);
+  console.log("😜 Merged next.js config.js:", newMergedNextConfig);
 
   //! 1. tsconfig.json 설정
   //"@framework":["framework/shopify"]를 "@framework":[`framework/${framework 이름 아무거나}`]로 바꾸고 tsconfig.json 파일 새로 덮어쓰기

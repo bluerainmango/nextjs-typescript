@@ -39,3 +39,4 @@ const ProductCard: FC<Props> = ({ product }) => {
 // };
 
 export default ProductCard;
+// ProductCard.displayName = "ProductCard";
