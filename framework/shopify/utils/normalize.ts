@@ -1,4 +1,4 @@
-import { ImageEdge, Product as ShopifyProduct } from "../schema";
+import { ImageEdge, MoneyV2, Product as ShopifyProduct } from "../schema";
 import { Product } from "@common/types/product";
 
 // 인자로 들어온 객체에서 edges prop만 빼는데, 이 prop의 type은 ImageEdge[] 다.(ImageEdge가 모인 arr)
@@ -10,6 +10,11 @@ const normalizeProductImages = ({ edges }: { edges: ImageEdge[] }) =>
   })); //! correct
 // function normalizeProductImages({edges: ImageEdge[]}) {} //! type 지정하는 법에서 error
 
+const normalizeProductPrice = ({ currencyCode, amount }: MoneyV2) => ({
+  value: +amount,
+  currencyCode,
+});
+
 // Normalize raw product data into data that is easy to use
 export function normalizeProduct(productNode: ShopifyProduct): Product {
   const {
@@ -19,6 +24,7 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
     vendor,
     description,
     images: imageConnection,
+    priceRange,
     ...rest
   } = productNode;
 
@@ -30,6 +36,7 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
     path: `/${handle}`,
     slug: handle.replace(/^\/+\/+$/g, ""), // remove slash /
     images: normalizeProductImages(imageConnection),
+    price: normalizeProductPrice(priceRange.minVariantPrice),
     ...rest,
   };
 
